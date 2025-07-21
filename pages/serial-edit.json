@@ -81,6 +81,7 @@
       "key": "protocol",
       "label": "协议",
       "type": "select",
+      "clear": "true",
       "options": [],
       "change_action": {
         "type": "script",
