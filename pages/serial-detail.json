@@ -52,17 +52,24 @@
       "label": "名称"
     },
     {
-      "key": "description",
-      "label": "说明"
+      "key": "port_name",
+      "label": "串口"
     },
     {
-      "key": "address",
-      "label": "地址"
+      "key": "baud_rate",
+      "label": "波特率"
     },
     {
-      "key": "port",
-      "label": "端口",
-      "type": "number"
+      "key": "data_bits",
+      "label": "字长"
+    },
+    {
+      "key": "stop_bits",
+      "label": "结束符"
+    },
+    {
+      "key": "parity_mode",
+      "label": "检验模式"
     },
     {
       "key": "protocol",

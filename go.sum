@@ -8,10 +8,12 @@ github.com/PaesslerAG/jsonpath v0.1.0 h1:gADYeifvlqK3R3i2cR5B4DGgxLXIPb3TRTH1mGi
 github.com/PaesslerAG/jsonpath v0.1.0/go.mod h1:4BzmtoM/PI8fPO4aQGIusjGxGir2BzcV0grWtFzq1Y8=
 github.com/busy-cloud/boat v0.5.4 h1:3fH2mnCPkQh7MWZxvG5vN167JZN1Z8h8ZlKefr7bIM8=
 github.com/busy-cloud/boat v0.5.4/go.mod h1:a91gbwtQnLit5F8dN3VtnEZEZCaAMqquaLi84ce/jfw=
-github.com/busy-cloud/boat-ui v0.5.5 h1:kuvr/fVm0TrQrZ1lFr2y7pMddqU2fWv3bWozYd4vu7c=
-github.com/busy-cloud/boat-ui v0.5.5/go.mod h1:t9DwLmJyjbPHcm+IKzC9qUE7futO0pLigI9HIPbkhg0=
+github.com/busy-cloud/boat-ui v0.5.6 h1:uyDKRov/kX8XXp7YuwJcrf0M8sil5pPdVjkfB44idB4=
+github.com/busy-cloud/boat-ui v0.5.6/go.mod h1:t9DwLmJyjbPHcm+IKzC9qUE7futO0pLigI9HIPbkhg0=
 github.com/busy-cloud/modbus v0.4.3 h1:9IEHw8iCxiMDfCYHTYsn7lM4W7EPgu9oRGmL/t1iGKY=
 github.com/busy-cloud/modbus v0.4.3/go.mod h1:aEPgQ/s/lxLrLMZGhVXiy3EWWHZocFhMZK9mxEcjiMA=
+github.com/busy-cloud/user v0.5.2 h1:AiI8qppc3Z8hEFjIywk38SDrtATRuKLupxDa4rM+RkA=
+github.com/busy-cloud/user v0.5.2/go.mod h1:3d6+JNs3yy0DJXZAJwP7NLFMKpCMa6Ag/ACwCioirxg=
 github.com/bytedance/sonic v1.13.3 h1:MS8gmaH16Gtirygw7jV91pDCN33NyMrPbN7qiYhEsF0=
 github.com/bytedance/sonic v1.13.3/go.mod h1:o68xyaF9u2gvVBuGHPlUVCy+ZfmNNO5ETf1+KgkJhz4=
 github.com/bytedance/sonic/loader v0.1.1/go.mod h1:ncP89zfokxS5LZrJxl5z0UJcsk4M4yY2JpfqGeCtNLU=

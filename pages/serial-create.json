@@ -15,16 +15,61 @@
       "required": true
     },
     {
-      "key": "address",
-      "label": "地址",
-      "type": "text",
-      "required": true
+      "key": "port_name",
+      "label": "串口",
+      "type": "select",
+      "options": []
     },
     {
-      "key": "port",
-      "label": "端口",
+      "key": "baud_rate",
+      "label": "波特率",
       "type": "number",
-      "required": true
+      "default": 9600
+    },
+    {
+      "key": "data_bits",
+      "label": "字长",
+      "type": "number",
+      "default": 8
+    },
+    {
+      "key": "stop_bits",
+      "label": "结束符",
+      "type": "radio",
+      "options": [
+        {
+          "value": 1,
+          "label": "1"
+        },
+        {
+          "disabled": true,
+          "value": 2,
+          "label": "1.5"
+        },
+        {
+          "value": 2,
+          "label": "2"
+        }
+      ]
+    },
+    {
+      "key": "parity_mode",
+      "label": "检验模式",
+      "type": "radio",
+      "options": [
+        {
+          "value": 0,
+          "label": "None"
+        },
+        {
+          "value": 1,
+          "label": "Odd"
+        },
+        {
+          "value": 2,
+          "label": "Even"
+        }
+      ]
     },
     {
       "key": "protocol",
@@ -45,9 +90,10 @@
   ],
   "submit_api": "serial-port/create",
   "submit_success": "this.navigate('/page/serial-port/serial-detail?id='+data.id)",
-  "mount": "this.load_protocols()",
+  "mount": "this.load_serials(); this.load_protocols()",
   "methods": {
-    "load_protocols": "this.request.get('iot/protocol/list').subscribe(res=>{this.content.fields[4].options=res.data.map(d=>{return {value:d.name,label:d.description}}); setTimeout(()=>this.load_protocol_option(), 200);  })",
-    "load_protocol_option": "this.editor.value.protocol && this.request.get('iot/protocol/'+this.editor.value.protocol).subscribe(res=>{this.content.fields[5].children=res.options; setTimeout(()=>this.editor.rebuild(), 200)})"
+    "load_serials": "this.request.get('serial-port/ports').subscribe(res=>{this.content.fields[2].options=res.data.map(d=>{return {value:d,label:d}}); })",
+    "load_protocols": "this.request.get('iot/protocol/list').subscribe(res=>{this.content.fields[7].options=res.data.map(d=>{return {value:d.name,label:d.description}}); setTimeout(()=>this.load_protocol_option(), 200);  })",
+    "load_protocol_option": "this.editor.value.protocol && this.request.get('iot/protocol/'+this.editor.value.protocol).subscribe(res=>{this.content.fields[8].children=res.options; setTimeout(()=>this.editor.rebuild(), 200)})"
   }
 }
