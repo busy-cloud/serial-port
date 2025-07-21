@@ -1,0 +1,29 @@
+{
+  "id": "serial-port",
+  "icon": "serial.png",
+  "name": "串口",
+  "description": "串口",
+  "version": "v0.0.1",
+  "shortcuts": [
+    {
+      "name": "串口",
+      "url": "page/serial-port/serial",
+      "icon": "serial.png"
+    }
+  ],
+  "menus": [
+    {
+      "name": "串口",
+      "nz_icon": "link",
+      "index": 301,
+      "items": [
+        {
+          "name": "串口",
+          "url": "page/serial-port/serial",
+          "icon": "serial.png"
+        }
+      ]
+    }
+  ],
+  "pages": "pages"
+}
