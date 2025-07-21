@@ -22,9 +22,10 @@ type SerialPort struct {
 	Description     string         `json:"description,omitempty"`
 	PortName        string         `json:"port_name,omitempty"`                       //port, e.g. COM1 "/dev/ttySerial1".
 	BaudRate        int            `json:"baud_rate,omitempty"`                       //9600 115200
-	DataBits        int            `json:"data_bits,omitempty"`                       //5 6 7 8
-	StopBits        int            `json:"stop_bits,omitempty"`                       //1 2
-	ParityMode      int            `json:"parity_mode,omitempty"`                     //0 1 2 NONE ODD EVEN
+	DataBits        int            `json:"data_bits"`                                 //5 6 7 8
+	StopBits        int            `json:"stop_bits"`                                 //1 2
+	ParityMode      int            `json:"parity_mode"`                               //0 1 2 NONE ODD EVEN
+	PackDelay       int            `json:"pack_delay"`                                //打包延迟 ms
 	Protocol        string         `json:"protocol,omitempty"`                        //通讯协议
 	ProtocolOptions map[string]any `json:"protocol_options,omitempty" xorm:"json"`    //通讯协议参数
 	Disabled        bool           `json:"disabled,omitempty"`                        //禁用
@@ -157,21 +158,56 @@ func (c *SerialPortImpl) receive(conn serial.Port) {
 	topicUp := fmt.Sprintf("link/serial-port/%s/up", c.Id)
 	topicUpProtocol := fmt.Sprintf("protocol/%s/link/serial-port/%s/up", c.Protocol, c.Id)
 
+	var cursor int //定位
 	var n int
 	var e error
 	buf := make([]byte, 4096)
+	var data []byte
+
+	var delay *time.Timer
+
+	if c.PackDelay > 5000 {
+		c.PackDelay = 50
+	}
+	var delayMS = time.Duration(c.PackDelay) * time.Millisecond
+
 	for {
-		n, e = conn.Read(buf)
+		n, e = conn.Read(buf[cursor:])
 		if e != nil {
 			_ = conn.Close()
 			break
 		}
+		data = buf[:cursor+n]
 
-		data := buf[:n]
-		//转发
-		mqtt.Publish(topicUp, data)
-		if c.Protocol != "" {
-			mqtt.Publish(topicUpProtocol, data)
+		//无延迟打包，直接上传
+		if delayMS <= 0 {
+			//转发
+			mqtt.Publish(topicUp, data)
+			if c.Protocol != "" {
+				mqtt.Publish(topicUpProtocol, data)
+			}
+		}
+
+		//以下为延时逻辑
+
+		//移动指针
+		cursor = cursor + n
+
+		//首包延迟
+		if delay == nil {
+			delay = time.AfterFunc(delayMS, func() {
+				//清空
+				cursor = 0
+				delay = nil
+
+				mqtt.Publish(topicUp, data)
+				if c.Protocol != "" {
+					mqtt.Publish(topicUpProtocol, data)
+				}
+			})
+		} else {
+			//次包重置
+			delay.Reset(delayMS)
 		}
 	}
 

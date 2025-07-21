@@ -19,7 +19,7 @@ func init() {
 	api.Register("POST", "serial-port/:id", curd.ApiUpdateHook[SerialPort](nil, func(m *SerialPort) error {
 		_ = FromPort(m)
 		return nil
-	}, "id", "name", "description", "port_name", "baud_rate", "data_bits", "stop_bits", "parity_mode", "disabled", "protocol", "protocol_options"))
+	}, "id", "name", "description", "port_name", "baud_rate", "data_bits", "stop_bits", "parity_mode", "pack_delay", "disabled", "protocol", "protocol_options"))
 
 	api.Register("GET", "serial-port/:id/delete", curd.ApiDeleteHook[SerialPort](nil, func(m *SerialPort) error {
 		_ = UnloadPort(m.Id)

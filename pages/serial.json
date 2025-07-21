@@ -77,12 +77,12 @@
       "label": "名称"
     },
     {
-      "key": "address",
-      "label": "地址"
+      "key": "port_name",
+      "label": "串口"
     },
     {
-      "key": "port",
-      "label": "端口"
+      "key": "baud_rate",
+      "label": "波特率"
     },
     {
       "key": "running",

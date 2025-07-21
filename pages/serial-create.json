@@ -72,6 +72,12 @@
       ]
     },
     {
+      "key": "pack_delay",
+      "label": "封包延迟（毫秒）",
+      "type": "number",
+      "default": 50
+    },
+    {
       "key": "protocol",
       "label": "协议",
       "type": "select",
@@ -93,7 +99,7 @@
   "mount": "this.load_serials(); this.load_protocols()",
   "methods": {
     "load_serials": "this.request.get('serial-port/ports').subscribe(res=>{this.content.fields[2].options=res.data.map(d=>{return {value:d,label:d}}); })",
-    "load_protocols": "this.request.get('iot/protocol/list').subscribe(res=>{this.content.fields[7].options=res.data.map(d=>{return {value:d.name,label:d.description}}); setTimeout(()=>this.load_protocol_option(), 200);  })",
-    "load_protocol_option": "this.editor.value.protocol && this.request.get('iot/protocol/'+this.editor.value.protocol).subscribe(res=>{this.content.fields[8].children=res.options; setTimeout(()=>this.editor.rebuild(), 200)})"
+    "load_protocols": "this.request.get('iot/protocol/list').subscribe(res=>{this.content.fields[8].options=res.data.map(d=>{return {value:d.name,label:d.description}}); setTimeout(()=>this.load_protocol_option(), 200);  })",
+    "load_protocol_option": "this.editor.value.protocol && this.request.get('iot/protocol/'+this.editor.value.protocol).subscribe(res=>{this.content.fields[9].children=res.options; setTimeout(()=>this.editor.rebuild(), 200)})"
   }
 }

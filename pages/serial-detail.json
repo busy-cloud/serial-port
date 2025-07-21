@@ -72,6 +72,10 @@
       "label": "检验模式"
     },
     {
+      "key": "pack_delay",
+      "label": "封包延迟（毫秒）"
+    },
+    {
       "key": "protocol",
       "label": "协议",
       "type": "text"
