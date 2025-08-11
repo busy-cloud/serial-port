@@ -3,7 +3,6 @@ package tcp_client
 import (
 	"embed"
 	"encoding/json"
-
 	"github.com/busy-cloud/boat/apps"
 	"github.com/busy-cloud/boat/log"
 	"github.com/busy-cloud/boat/store"
@@ -15,6 +14,9 @@ var assets embed.FS
 
 //go:embed pages
 var pages embed.FS
+
+//go:embed tables
+var tables embed.FS
 
 //go:embed manifest.json
 var manifest []byte
@@ -28,6 +30,8 @@ func init() {
 	}
 	apps.Register(&a)
 
+	//注册资源
 	a.AssetsFS = store.PrefixFS(&assets, "assets")
 	a.PagesFS = store.PrefixFS(&pages, "pages")
+	a.TablesFS = store.PrefixFS(&tables, "tables")
 }

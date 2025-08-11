@@ -33,19 +33,16 @@ func init() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	apps.Register(&a)
 
 	a.AssetsFS = store.Dir("assets")
 	a.PagesFS = store.Dir("pages")
+	a.TablesFS = store.Dir("tables")
+
+	apps.Register(&a)
 }
 
 func main() {
 	viper.SetConfigName("serial-port")
-	//e := viper.SafeWriteConfig()
-	////e := viper.WriteConfig()
-	//if e != nil {
-	//	log.Error(e)
-	//}
 
 	sigs := make(chan os.Signal, 1)
 	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
