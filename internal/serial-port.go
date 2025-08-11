@@ -12,10 +12,6 @@ import (
 	"go.bug.st/serial"
 )
 
-func init() {
-	db.Register(&SerialPort{})
-}
-
 type SerialPort struct {
 	Id              string         `json:"id,omitempty" xorm:"pk"`
 	Name            string         `json:"name,omitempty"`
