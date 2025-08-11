@@ -8,7 +8,6 @@ import (
 	"github.com/busy-cloud/boat/db"
 	"github.com/busy-cloud/boat/log"
 	"github.com/busy-cloud/boat/mqtt"
-	"github.com/god-jason/iot-master/link"
 	"go.bug.st/serial"
 )
 
@@ -27,7 +26,7 @@ type SerialPort struct {
 	Disabled        bool           `json:"disabled,omitempty"`                        //禁用
 	Created         time.Time      `json:"created,omitempty,omitzero" xorm:"created"` //创建时间
 
-	link.Status `xorm:"-"`
+	Status `xorm:"-"`
 }
 
 type SerialPortImpl struct {
@@ -113,7 +112,7 @@ func (c *SerialPortImpl) Close() error {
 
 func (c *SerialPortImpl) receive(conn serial.Port) {
 	//从数据库中查询
-	var l link.Link
+	var l Link
 	//xorm.ErrNotExist //db.Engine.Exist()
 	//.Where("linker=", "serial-port").And("id=", id)
 	has, err := db.Engine().ID(c.Id).Get(&l)
