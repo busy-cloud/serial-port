@@ -57,7 +57,7 @@
       "confirm": "确认删除？",
       "action": {
         "type": "script",
-        "script": "this.request.get('table/serial-port/delete/'+data.id).subscribe(res=>{this.load()})"
+        "script": "this.request.get('table/serial_port/delete/'+data.id).subscribe(res=>{this.load()})"
       }
     }
   ],
@@ -102,5 +102,5 @@
       "type": "date"
     }
   ],
-  "search_api": "table/serial-port/search"
+  "search_api": "table/serial_port/search"
 }
