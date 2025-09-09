@@ -1,7 +1,7 @@
 {
   "name": "serial_port",
   "comment": "串口",
-  "fields": [
+  "columns": [
     {
       "name": "id",
       "comment": "ID",
