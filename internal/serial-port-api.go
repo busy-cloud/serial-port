@@ -50,13 +50,7 @@ func portClose(ctx *gin.Context) {
 func portOpen(ctx *gin.Context) {
 	l := ports.Load(ctx.Param("id"))
 	if l != nil {
-		err := l.Open()
-		if err != nil {
-			api.Error(ctx, err)
-			return
-		}
-		api.OK(ctx, nil)
-		return
+		_ = l.Close()
 	}
 
 	err := LoadPort(ctx.Param("id"))
