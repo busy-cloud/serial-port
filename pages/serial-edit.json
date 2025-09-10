@@ -95,8 +95,8 @@
       "children": []
     }
   ],
-  "load_api": "table/serial_port/:id",
-  "submit_api": "table/serial_port/:id",
+  "load_api": "table/serial_port/detail/:id",
+  "submit_api": "table/serial_port/update/:id",
   "submit_success": "this.navigate('/page/serial-port/serial-detail?id='+this.params.id)",
   "mount": "this.load_serials(); this.load_protocols()",
   "methods": {
