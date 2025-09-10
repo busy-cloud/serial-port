@@ -96,7 +96,7 @@
     }
   ],
   "submit_api": "table/serial_port/create",
-  "submit_success": "this.navigate('/page/serial-port/serial-detail?id='+data.id)",
+  "submit_success": "this.navigate('/page/serial-port/serial-detail?id='+data)",
   "mount": "this.load_serials(); this.load_protocols()",
   "methods": {
     "load_serials": "this.request.get('serial-port/ports').subscribe(res=>{this.content.fields[2].options=res.data.map(d=>{return {value:d,label:d}}); })",
