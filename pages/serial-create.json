@@ -17,8 +17,8 @@
     {
       "key": "port_name",
       "label": "串口",
-      "type": "select",
-      "options": []
+      "type": "text",
+      "required": true
     },
     {
       "key": "baud_rate",
