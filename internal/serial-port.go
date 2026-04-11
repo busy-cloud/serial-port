@@ -85,15 +85,16 @@ func (c *SerialPortImpl) Open() (err error) {
 }
 
 func (c *SerialPortImpl) keep() {
-	for c.opened {
-		time.Sleep(time.Minute)
+	time.Sleep(time.Minute)
 
+	for c.opened {
 		if c.Port == nil {
 			err := c.connect()
 			if err != nil {
 				log.Error(err)
 			}
 		}
+		time.Sleep(time.Minute)
 	}
 }
 
